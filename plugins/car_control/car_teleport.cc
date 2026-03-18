@@ -24,6 +24,7 @@
 
 static std::atomic<double> g_speed{0.0};
 static std::atomic<double> g_yawRate{0.0};
+static std::atomic<bool> g_running{true};
 
 // ── stdin reader thread ────────────────────────────────────────────────────
 void stdinReader()
@@ -38,9 +39,11 @@ void stdinReader()
     g_speed.store(s);
     g_yawRate.store(yr);
   }
-  // stdin closed → stop the car
+  // stdin closed: terminate process so stale teleporter instances
+  // cannot keep forcing the model pose in the background.
   g_speed.store(0.0);
   g_yawRate.store(0.0);
+  g_running.store(false);
 }
 
 // ── main ──────────────────────────────────────────────────────────────────
@@ -90,7 +93,7 @@ int main(int argc, char **argv)
   const double dt    = 1.0 / 30.0;   // 30 Hz
   const auto   period = std::chrono::duration<double>(dt);
 
-  while (true)
+  while (g_running.load())
   {
     auto t0 = std::chrono::steady_clock::now();
 
@@ -129,5 +132,6 @@ int main(int argc, char **argv)
       std::this_thread::sleep_for(remaining);
   }
 
+  std::cerr << "[car_teleport] stdin closed; exiting\n";
   return 0;
 }
