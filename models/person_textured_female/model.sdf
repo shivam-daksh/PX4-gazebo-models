@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <model name="person_textured_female">
+    <pose>0 0 0 0 0 0</pose>
+    <static>false</static>
+
+    <link name="body">
+      <inertial>
+        <mass>60.0</mass>
+        <pose>0 0 0.85 0 0 0</pose>
+        <inertia>
+          <ixx>2.8</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>2.8</iyy>
+          <iyz>0</iyz>
+          <izz>0.6</izz>
+        </inertia>
+      </inertial>
+
+      <!-- Collision -->
+      <collision name="person_collision">
+        <pose>0 0 0.85 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.55 0.28 1.7</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <!-- Visual with photo texture -->
+      <visual name="person_visual">
+        <pose>0 0 0.85 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.55 0.28 1.7</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>model://person_textured_female/materials/textures/person_female.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+        <cast_shadows>true</cast_shadows>
+      </visual>
+
+    </link>
+
+    <!-- Plugin for movement control -->
+    <plugin filename="gz-sim-trajectory-follower-system" name="gz::sim::systems::TrajectoryFollower">
+      <link_name>body</link_name>
+      <loop>true</loop>
+      <force>100</force>
+      <torque>100</torque>
+    </plugin>
+
+  </model>
+</sdf>

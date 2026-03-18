@@ -1,0 +1,9 @@
+/home/shivam-daksh/px4/PX4-IDR/Tools/simulation/gz/plugins/car_control/build/CMakeFiles/CarControlPlugin.dir
+/home/shivam-daksh/px4/PX4-IDR/Tools/simulation/gz/plugins/car_control/build/CMakeFiles/car_cmd_pub.dir
+/home/shivam-daksh/px4/PX4-IDR/Tools/simulation/gz/plugins/car_control/build/CMakeFiles/car_teleport.dir
+/home/shivam-daksh/px4/PX4-IDR/Tools/simulation/gz/plugins/car_control/build/CMakeFiles/edit_cache.dir
+/home/shivam-daksh/px4/PX4-IDR/Tools/simulation/gz/plugins/car_control/build/CMakeFiles/rebuild_cache.dir
+/home/shivam-daksh/px4/PX4-IDR/Tools/simulation/gz/plugins/car_control/build/CMakeFiles/list_install_components.dir
+/home/shivam-daksh/px4/PX4-IDR/Tools/simulation/gz/plugins/car_control/build/CMakeFiles/install.dir
+/home/shivam-daksh/px4/PX4-IDR/Tools/simulation/gz/plugins/car_control/build/CMakeFiles/install/local.dir
+/home/shivam-daksh/px4/PX4-IDR/Tools/simulation/gz/plugins/car_control/build/CMakeFiles/install/strip.dir

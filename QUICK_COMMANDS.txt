@@ -1,0 +1,153 @@
+╔════════════════════════════════════════════════════════════════╗
+║                                                                ║
+║   📸 TEXTURED PERSON MODELS - QUICK COMMANDS                   ║
+║                                                                ║
+╚════════════════════════════════════════════════════════════════╝
+
+┌─ SETUP (Already Complete!) ────────────────────────────────────┐
+│ Location: /home/shivam-daksh/px4/PX4-IDR/Tools/simulation/gz  │
+│ Models: person_textured_female, person_textured_male           │
+│ Status: ✅ Ready to use with placeholder textures              │
+└────────────────────────────────────────────────────────────────┘
+
+┌─ USAGE ────────────────────────────────────────────────────────┐
+│                                                                │
+│ 1️⃣  START SIMULATION                                           │
+│    cd /home/shivam-daksh/px4/PX4-IDR                          │
+│    make px4_sitl gz_x500_mono_cam                             │
+│                                                                │
+│ 2️⃣  SPAWN MOVING PERSON (new terminal, after sim loads)        │
+│    cd /home/shivam-daksh/px4/PX4-IDR/Tools/simulation/gz      │
+│                                                                │
+│    # Python script (with movement control)                     │
+│    ./spawn_textured_person.py --female --x 5 --y 0 \          │
+│        --move --pattern circle                                │
+│                                                                │
+│    # OR simple bash script (static spawn only)                 │
+│    ./spawn_person_simple.sh female 5 0                        │
+│                                                                │
+│ 3️⃣  RUN TRACKER (new terminal)                                 │
+│    cd /home/shivam-daksh/px4/PX4-IDR/object_tracking/\        │
+│        rpi_deployment/ubuntu                                  │
+│    python3 main.py                                            │
+│                                                                │
+└────────────────────────────────────────────────────────────────┘
+
+┌─ SPAWN OPTIONS ────────────────────────────────────────────────┐
+│                                                                │
+│ # Female or Male                                               │
+│ --female  or  --male                                          │
+│                                                                │
+│ # Position                                                     │
+│ --x 5 --y 0 --z 0                                             │
+│                                                                │
+│ # Movement Patterns                                            │
+│ --move --pattern line      # Back & forth                     │
+│ --move --pattern circle    # Circular (best for yaw test)     │
+│ --move --pattern figure8   # Complex path                     │
+│ --move --pattern random    # Random walk                      │
+│                                                                │
+│ # Speed & Duration                                             │
+│ --speed 0.5                # Movement speed                   │
+│ --duration 120             # Seconds                          │
+│                                                                │
+└────────────────────────────────────────────────────────────────┘
+
+┌─ EXAMPLES ─────────────────────────────────────────────────────┐
+│                                                                │
+│ # Simple spawn (static)                                        │
+│ ./spawn_textured_person.py --female --x 5 --y 0              │
+│                                                                │
+│ # Moving in circle (recommended for testing)                  │
+│ ./spawn_textured_person.py --female --x 5 --y 0 \            │
+│     --move --pattern circle --speed 0.3                       │
+│                                                                │
+│ # Fast line movement                                           │
+│ ./spawn_textured_person.py --male --x 3 --y 0 \              │
+│     --move --pattern line --speed 0.8                         │
+│                                                                │
+│ # Multiple people                                              │
+│ ./spawn_textured_person.py --female --x 5 --y 2 \            │
+│     --name p1 --move --pattern circle &                       │
+│ ./spawn_textured_person.py --male --x -3 --y -2 \            │
+│     --name p2 --move --pattern line &                         │
+│                                                                │
+└────────────────────────────────────────────────────────────────┘
+
+┌─ WHAT TO EXPECT ───────────────────────────────────────────────┐
+│                                                                │
+│ ✅ YOLO detects textured box as person                         │
+│ ✅ Drone tracks smoothly                                       │
+│ ✅ Control mode: "yaw_only" (yellow)                          │
+│ ✅ Lateral velocity: vy ≈ 0.00 (no roll!)                     │
+│ ✅ Drone rotates (yaw) to follow target                        │
+│                                                                │
+│ Console output:                                                │
+│ 📊 Mode: yaw_only | Err H:+0.12 V:-0.05 D:+0.08 |            │
+│    Vel vx:0.05 vy:0.00 vz:0.03 yaw:0.10                       │
+│         ↑ Should be 0.00 for small errors!                    │
+│                                                                │
+└────────────────────────────────────────────────────────────────┘
+
+┌─ TESTING CHECKLIST ────────────────────────────────────────────┐
+│                                                                │
+│ Before Testing:                                                │
+│ □ PX4 SITL running                                            │
+│ □ Gazebo world loaded                                         │
+│ □ Person spawned successfully                                 │
+│ □ Drone tracker started                                       │
+│                                                                │
+│ During Testing:                                                │
+│ □ YOLO detects person (green box)                            │
+│ □ Drone takes off to 10m                                      │
+│ □ Target acquired (mode: TRACK)                               │
+│ □ Control mode shows "yaw_only"                              │
+│ □ vy velocity ≈ 0.00                                          │
+│ □ Smooth tracking (no oscillations)                           │
+│                                                                │
+└────────────────────────────────────────────────────────────────┘
+
+┌─ REPLACE TEXTURES (Optional) ──────────────────────────────────┐
+│                                                                │
+│ # Navigate to models directory                                 │
+│ cd /home/shivam-daksh/px4/PX4-IDR/Tools/simulation/gz/models  │
+│                                                                │
+│ # Copy your photos                                             │
+│ cp your_photo_female.png \                                    │
+│    person_textured_female/materials/textures/person_female.png│
+│                                                                │
+│ cp your_photo_male.jpg \                                      │
+│    person_textured_male/materials/textures/person_male.png    │
+│                                                                │
+│ Note: Current placeholder textures work fine!                  │
+│                                                                │
+└────────────────────────────────────────────────────────────────┘
+
+┌─ DOCUMENTATION ────────────────────────────────────────────────┐
+│                                                                │
+│ 📖 TEXTURED_PERSONS.md         - Complete guide               │
+│ 📖 TEXTURED_SETUP_COMPLETE.md  - Setup summary                │
+│ 📖 VISUAL_SERVOING.md          - Control theory               │
+│ 📖 QUICKREF.md                 - Visual servoing reference     │
+│                                                                │
+└────────────────────────────────────────────────────────────────┘
+
+┌─ TROUBLESHOOTING ──────────────────────────────────────────────┐
+│                                                                │
+│ Q: Person not spawning?                                        │
+│ A: Check Gazebo is running, verify model path                 │
+│                                                                │
+│ Q: Not detected by YOLO?                                       │
+│ A: Placeholders should work, check YOLO config                │
+│                                                                │
+│ Q: Person not moving?                                          │
+│ A: Ensure --move flag is used, check pattern name             │
+│                                                                │
+│ Q: Drone not tracking?                                         │
+│ A: Verify drone is in TRACK mode, check detection             │
+│                                                                │
+└────────────────────────────────────────────────────────────────┘
+
+╔════════════════════════════════════════════════════════════════╗
+║  ✅ Setup Complete! Ready to Test Visual Servoing 🚀           ║
+╚════════════════════════════════════════════════════════════════╝

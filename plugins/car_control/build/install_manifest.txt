@@ -1,0 +1,3 @@
+/home/shivam-daksh/.gz/sim/8/plugins/libCarControlPlugin.so
+/home/shivam-daksh/.gz/sim/8/plugins/car_cmd_pub
+/home/shivam-daksh/.gz/sim/8/plugins/car_teleport

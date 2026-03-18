@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <model name="m_casual_mic">
+    <pose>0 0 0 0 0 0</pose>
+    <static>false</static>
+
+    <link name="body">
+      <inertial>
+        <mass>70.0</mass>
+        <pose>0 0 0.9 0 0 0</pose>
+        <inertia>
+          <ixx>3.82</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>3.82</iyy>
+          <iyz>0</iyz>
+          <izz>0.77</izz>
+        </inertia>
+      </inertial>
+
+      <!-- Collision -->
+      <collision name="person_collision">
+        <pose>0 0 0.9 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.35 1.8</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <!-- Walking Animation Visual -->
+      <visual name="person_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://m_casual_mic/walk.dae</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <!-- Bright colored material for YOLO detection -->
+          <ambient>0.8 0.6 0.4 1</ambient>
+          <diffuse>1.0 0.7 0.5 1</diffuse>
+          <specular>0.3 0.3 0.3 1</specular>
+          <emissive>0.1 0.05 0.03 1</emissive>
+        </material>
+        <cast_shadows>true</cast_shadows>
+      </visual>
+    </link>
+  </model>
+</sdf>

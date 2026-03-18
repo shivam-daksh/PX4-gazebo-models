@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <model name="person">
+    <pose>0 0 0 0 0 0</pose>
+    <static>false</static>
+
+    <link name="body">
+      <inertial>
+        <mass>70.0</mass>
+        <pose>0 0 0.9 0 0 0</pose>
+        <inertia>
+          <ixx>3.82</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>3.82</iyy>
+          <iyz>0</iyz>
+          <izz>0.77</izz>
+        </inertia>
+      </inertial>
+
+      <!-- Collision - Keep simple collision for performance -->
+      <collision name="person_collision">
+        <pose>0 0 0.9 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.35 1.8</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <!-- Realistic textured mesh with WALKING ANIMATION -->
+      <visual name="person_mesh">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <!-- Using walking animation for better realism -->
+            <uri>model://person/meshes/person_walking.dae</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <!-- Bright colored material for excellent YOLO detection -->
+          <ambient>0.9 0.5 0.3 1</ambient>
+          <diffuse>1.0 0.4 0.2 1</diffuse>
+          <specular>0.3 0.3 0.3 1</specular>
+          <emissive>0.15 0.05 0.02 1</emissive>
+        </material>
+        <cast_shadows>true</cast_shadows>
+      </visual>
+
+    </link>
+  </model>
+</sdf>

@@ -2,7 +2,7 @@
 <sdf version="1.9">
   <model name="red_target">
     <pose>0 0 1 0 0 0</pose>
-    <static>false</static>
+    <static>true</static>
 
     <link name="body">
       <inertial>
